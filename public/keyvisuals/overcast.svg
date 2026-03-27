@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-slate" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="60" result="b3"/>
+      <feMerge><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Heavy fog/diffusion -->
+    <filter id="diffuse" x="-30%" y="-30%" width="160%" height="160%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="5" seed="12" result="turb"/>
+      <feColorMatrix in="turb" type="matrix" values="0 0 0 0 0.39  0 0 0 0 0.46  0 0 0 0 0.55  0 0 0 0.08 0"/>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <radialGradient id="bg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#10131a"/>
+      <stop offset="50%" stop-color="#0a0c10"/>
+      <stop offset="100%" stop-color="#040506"/>
+    </radialGradient>
+    <!-- Overcast sky gradient (top) -->
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748B" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+    <linearGradient id="slate-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8"/>
+      <stop offset="50%" stop-color="#64748B"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="50%" stop-color="transparent"/><stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <!-- Diffused cloud layer -->
+  <rect x="0" y="200" width="1920" height="400" filter="url(#diffuse)"/>
+  <!-- Soft glow — very diffused, atmospheric -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-slate)" opacity="0.35">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#64748B">cast</tspan>
+  </text>
+  <!-- Over -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#1a1e22">Over</tspan><tspan font-weight="700" fill="transparent">cast</tspan>
+  </text>
+  <!-- cast -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#slate-g)">cast</tspan>
+  </text>
+  <text x="960" y="560" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#3a4050" letter-spacing="5">CONTENT &amp; YOUTUBE</text>
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#252830" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.05"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.45"/>
+</svg>

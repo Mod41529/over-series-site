@@ -1,0 +1,207 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- Intense multi-layer glow -->
+    <filter id="glow-intense" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="16" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="40" result="b3"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="80" result="b4"/>
+      <feMerge>
+        <feMergeNode in="b4"/>
+        <feMergeNode in="b3"/>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Breathing glow animation -->
+    <filter id="glow-breathe" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="b2"/>
+      <feMerge>
+        <feMergeNode in="b2"/>
+        <feMergeNode in="b1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Chromatic trail - warm (right + down offset) -->
+    <filter id="trail-warm" x="-20%" y="-20%" width="160%" height="200%">
+      <feOffset in="SourceGraphic" dx="6" dy="8"/>
+      <feGaussianBlur stdDeviation="4"/>
+      <feColorMatrix type="matrix" values="0.6 0 0 0 0.15  0 0.1 0 0 0  0 0 0.4 0 0.1  0 0 0 0.5 0"/>
+    </filter>
+
+    <!-- Chromatic trail - cool (left + down offset, stronger) -->
+    <filter id="trail-cool" x="-20%" y="-20%" width="160%" height="200%">
+      <feOffset in="SourceGraphic" dx="-5" dy="12"/>
+      <feGaussianBlur stdDeviation="6"/>
+      <feColorMatrix type="matrix" values="0.1 0 0 0 0  0 0.05 0 0 0.02  0 0 0.8 0 0.3  0 0 0 0.45 0"/>
+    </filter>
+
+    <!-- Chromatic trail - far (heavy blur, big offset = BREATHE trailing) -->
+    <filter id="trail-far" x="-30%" y="-30%" width="180%" height="300%">
+      <feOffset in="SourceGraphic" dx="2" dy="40"/>
+      <feGaussianBlur stdDeviation="18"/>
+      <feColorMatrix type="matrix" values="0.2 0 0 0 0.05  0 0 0 0 0  0 0 0.6 0 0.2  0 0 0 0.3 0"/>
+    </filter>
+
+    <!-- Extra far trail (purple shift) -->
+    <filter id="trail-purple" x="-30%" y="-30%" width="180%" height="350%">
+      <feOffset in="SourceGraphic" dx="-8" dy="80"/>
+      <feGaussianBlur stdDeviation="30"/>
+      <feColorMatrix type="matrix" values="0.3 0 0 0 0.08  0 0 0 0 0  0 0 0.5 0 0.15  0 0 0 0.2 0"/>
+    </filter>
+
+    <!-- Subtle "Over" glow -->
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Film grain via feTurbulence -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="mono"/>
+      <feBlend in="SourceGraphic" in2="mono" mode="overlay" result="blended"/>
+      <feComponentTransfer in="blended">
+        <feFuncA type="linear" slope="1" intercept="0"/>
+      </feComponentTransfer>
+    </filter>
+
+    <!-- Scanline -->
+    <pattern id="scanlines" patternUnits="userSpaceOnUse" width="4" height="4">
+      <rect width="4" height="1.5" fill="rgba(255,255,255,0.012)"/>
+    </pattern>
+
+    <!-- Background -->
+    <radialGradient id="bg" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#0c1a30"/>
+      <stop offset="60%" stop-color="#060a14"/>
+      <stop offset="100%" stop-color="#020204"/>
+    </radialGradient>
+
+    <!-- Ambient glow behind text -->
+    <radialGradient id="ambient" cx="58%" cy="46%" r="25%">
+      <stop offset="0%" stop-color="#1a3a6a" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- ride gradient -->
+    <linearGradient id="ride-g" x1="0%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="40%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#2563EB"/>
+    </linearGradient>
+
+    <!-- Vertical fade for trailing -->
+    <linearGradient id="trail-fade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#4F1D91"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+
+  <!-- Ambient glow -->
+  <rect width="1920" height="1080" fill="url(#ambient)"/>
+
+  <!-- Subtle texture grid -->
+  <g opacity="0.025" stroke="#3B82F6" stroke-width="0.5">
+    <line x1="0" y1="270" x2="1920" y2="270"/>
+    <line x1="0" y1="540" x2="1920" y2="540"/>
+    <line x1="0" y1="810" x2="1920" y2="810"/>
+    <line x1="480" y1="0" x2="480" y2="1080"/>
+    <line x1="960" y1="0" x2="960" y2="1080"/>
+    <line x1="1440" y1="0" x2="1440" y2="1080"/>
+  </g>
+
+  <!-- ===== TRAILING LAYERS (BREATHE-style, bottom to top) ===== -->
+
+  <!-- Trail layer 4: purple far trail -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#trail-purple)">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#2563EB">ride</tspan>
+  </text>
+
+  <!-- Trail layer 3: far blue trail -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#trail-far)">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#2563EB">ride</tspan>
+  </text>
+
+  <!-- Trail layer 2: cool shift -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#trail-cool)">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#2563EB">ride</tspan>
+  </text>
+
+  <!-- Trail layer 1: warm shift -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#trail-warm)">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#2563EB">ride</tspan>
+  </text>
+
+  <!-- ===== MAIN TEXT ===== -->
+
+  <!-- Glow halo (behind main text) -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-intense)" opacity="0.7">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#2563EB">ride</tspan>
+  </text>
+
+  <!-- "Over" — dim, present but receded -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#2a2a2a">Over</tspan><tspan font-weight="700" fill="transparent">ride</tspan>
+  </text>
+
+  <!-- "ride" — main, bright -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#ride-g)">ride</tspan>
+  </text>
+
+  <!-- Breathing pulse overlay -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-breathe)">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#2563EB" opacity="0.3">ride</tspan>
+    <animate attributeName="opacity" values="0.15;0.35;0.15" dur="3s" repeatCount="indefinite"/>
+  </text>
+
+  <!-- ===== UI ELEMENTS ===== -->
+
+  <!-- Tagline -->
+  <text x="960" y="570" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#445" letter-spacing="5">AI AGENT ORCHESTRATION</text>
+
+  <!-- Series tagline -->
+  <text x="960" y="600" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#2a2a3a" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+
+  <!-- Cursor -->
+  <rect x="1078" y="440" width="2.5" height="38" fill="#3B82F6" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;0;0.9" dur="1s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Floating particles -->
+  <circle cx="780" cy="380" r="1.5" fill="#3B82F6" opacity="0.4">
+    <animate attributeName="cy" values="380;370;380" dur="4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.1;0.4" dur="4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1150" cy="520" r="1" fill="#60A5FA" opacity="0.3">
+    <animate attributeName="cy" values="520;508;520" dur="5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.3;0.08;0.3" dur="5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="850" cy="550" r="0.8" fill="#818CF8" opacity="0.25">
+    <animate attributeName="cy" values="550;540;550" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="1100" cy="400" r="1.2" fill="#3B82F6" opacity="0.35">
+    <animate attributeName="cy" values="400;390;400" dur="6s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Scanline overlay -->
+  <rect width="1920" height="1080" fill="url(#scanlines)"/>
+
+  <!-- Film grain overlay -->
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.06"/>
+
+  <!-- Vignette -->
+  <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+    <stop offset="50%" stop-color="transparent"/>
+    <stop offset="100%" stop-color="#000000"/>
+  </radialGradient>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.5"/>
+</svg>

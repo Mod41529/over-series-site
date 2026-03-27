@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-red" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="55" result="b3"/>
+      <feMerge><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <!-- Crack/fracture displacement -->
+    <filter id="crack" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="3" seed="8" result="turb"/>
+      <feDisplacementMap in="SourceGraphic" in2="turb" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1a0808"/>
+      <stop offset="60%" stop-color="#0a0404"/>
+      <stop offset="100%" stop-color="#030101"/>
+    </radialGradient>
+    <radialGradient id="heat" cx="55%" cy="48%" r="25%">
+      <stop offset="0%" stop-color="#DC2626" stop-opacity="0.12"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <linearGradient id="red-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EF4444"/>
+      <stop offset="50%" stop-color="#DC2626"/>
+      <stop offset="100%" stop-color="#991B1B"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="45%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#heat)"/>
+  <!-- Diagonal fracture lines -->
+  <g opacity="0.06" stroke="#DC2626" stroke-width="0.5">
+    <line x1="700" y1="350" x2="850" y2="600"/>
+    <line x1="1100" y1="300" x2="1200" y2="550"/>
+    <line x1="800" y1="400" x2="950" y2="650"/>
+    <line x1="1000" y1="380" x2="1150" y2="580"/>
+    <line x1="750" y1="500" x2="1050" y2="520"/>
+  </g>
+  <!-- Distorted ghost text (cracked feel) -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#crack)" opacity="0.15">
+    <tspan font-weight="300" fill="#DC2626">Over</tspan><tspan font-weight="700" fill="#DC2626">throw</tspan>
+  </text>
+  <!-- Glow -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-red)" opacity="0.5">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#DC2626">throw</tspan>
+  </text>
+  <!-- Over -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#2a1a1a">Over</tspan><tspan font-weight="700" fill="transparent">throw</tspan>
+  </text>
+  <!-- throw -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#red-g)">throw</tspan>
+  </text>
+  <text x="960" y="560" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#553030" letter-spacing="5">STARTUP</text>
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#331a1a" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.08"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.5"/>
+</svg>

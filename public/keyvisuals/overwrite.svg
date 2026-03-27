@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-purple" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="55" result="b3"/>
+      <feMerge><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#120a1a"/>
+      <stop offset="50%" stop-color="#08050e"/>
+      <stop offset="100%" stop-color="#030208"/>
+    </radialGradient>
+    <linearGradient id="purple-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA"/>
+      <stop offset="50%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#5B21B6"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="50%" stop-color="transparent"/><stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <!-- Palimpsest: faded ghost text layers underneath -->
+  <text x="958" y="494" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" opacity="0.04" font-weight="700" fill="#7C3AED">write</text>
+  <text x="955" y="498" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" opacity="0.03" font-weight="700" fill="#7C3AED">write</text>
+  <text x="963" y="486" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" opacity="0.025" font-weight="700" fill="#7C3AED">write</text>
+  <!-- Struck-through old text (overwritten feel) -->
+  <text x="960" y="490" text-anchor="middle" font-family="Georgia, serif" font-size="140" letter-spacing="2" opacity="0.035" fill="#7C3AED" text-decoration="line-through" font-style="italic">rewrite</text>
+  <!-- Glow -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-purple)" opacity="0.45">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#7C3AED">write</tspan>
+  </text>
+  <!-- Over -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#1e1a2a">Over</tspan><tspan font-weight="700" fill="transparent">write</tspan>
+  </text>
+  <!-- write -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#purple-g)">write</tspan>
+  </text>
+  <text x="960" y="560" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#45306a" letter-spacing="5">WRITING</text>
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#2a1e40" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.06"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.5"/>
+</svg>

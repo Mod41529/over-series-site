@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-gold" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="50" result="b3"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="90" result="b4"/>
+      <feMerge><feMergeNode in="b4"/><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <!-- Warm spotlight from above -->
+    <radialGradient id="bg" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#1a1408"/>
+      <stop offset="40%" stop-color="#0d0a04"/>
+      <stop offset="100%" stop-color="#030302"/>
+    </radialGradient>
+    <radialGradient id="spotlight" cx="50%" cy="35%" r="30%">
+      <stop offset="0%" stop-color="#B8860B" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="transparent" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Gold gradient -->
+    <linearGradient id="gold-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#D4A843"/>
+      <stop offset="50%" stop-color="#B8860B"/>
+      <stop offset="100%" stop-color="#8B6508"/>
+    </linearGradient>
+    <!-- Stage curtain hint lines -->
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="50%" stop-color="transparent"/>
+      <stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#spotlight)"/>
+  <!-- Stage light rays -->
+  <g opacity="0.03">
+    <line x1="960" y1="0" x2="600" y2="1080" stroke="#B8860B" stroke-width="1"/>
+    <line x1="960" y1="0" x2="1320" y2="1080" stroke="#B8860B" stroke-width="1"/>
+    <line x1="960" y1="0" x2="400" y2="1080" stroke="#B8860B" stroke-width="0.5"/>
+    <line x1="960" y1="0" x2="1520" y2="1080" stroke="#B8860B" stroke-width="0.5"/>
+  </g>
+  <!-- Glow halo -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-3" filter="url(#glow-gold)" opacity="0.6">
+    <tspan font-weight="700" fill="#B8860B">OVERTURE</tspan>
+  </text>
+  <!-- Main text (Overture exception: full word, single treatment) -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-3" font-weight="700" fill="url(#gold-g)">OVERTURE</text>
+  <!-- Tagline -->
+  <text x="960" y="560" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#554a30" letter-spacing="5">MUSIC &amp; INSTRUMENTS</text>
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#332e20" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <!-- Film grain -->
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.05"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.55"/>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-mag" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="55" result="b3"/>
+      <feMerge><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1a0815"/>
+      <stop offset="50%" stop-color="#0e050c"/>
+      <stop offset="100%" stop-color="#040205"/>
+    </radialGradient>
+    <linearGradient id="mag-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F472B6"/>
+      <stop offset="50%" stop-color="#DB2777"/>
+      <stop offset="100%" stop-color="#9D174D"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="50%" stop-color="transparent"/><stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <!-- Overlapping translucent shapes (design layers concept) -->
+  <g opacity="0.06">
+    <rect x="700" y="350" width="260" height="260" rx="8" fill="none" stroke="#DB2777" stroke-width="1" transform="rotate(-8 830 480)"/>
+    <rect x="740" y="370" width="260" height="260" rx="8" fill="none" stroke="#F472B6" stroke-width="0.8" transform="rotate(3 870 500)"/>
+    <circle cx="1150" cy="460" r="120" fill="none" stroke="#DB2777" stroke-width="0.8"/>
+    <circle cx="1200" cy="490" r="100" fill="none" stroke="#F472B6" stroke-width="0.6"/>
+  </g>
+  <!-- Overlap blend zones -->
+  <rect x="770" y="400" width="200" height="200" rx="6" fill="#DB2777" opacity="0.03" transform="rotate(-5 870 500)"/>
+  <rect x="800" y="410" width="200" height="200" rx="6" fill="#F472B6" opacity="0.025" transform="rotate(5 900 510)"/>
+  <!-- Glow -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-mag)" opacity="0.45">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#DB2777">lap</tspan>
+  </text>
+  <!-- Over -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#2a1a22">Over</tspan><tspan font-weight="700" fill="transparent">lap</tspan>
+  </text>
+  <!-- lap -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#mag-g)">lap</tspan>
+  </text>
+  <text x="960" y="560" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#5a3050" letter-spacing="5">DESIGN</text>
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#351e2e" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.06"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.5"/>
+</svg>

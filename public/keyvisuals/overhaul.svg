@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-indigo" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="55" result="b3"/>
+      <feMerge><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <radialGradient id="bg" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="50%" stop-color="#050510"/>
+      <stop offset="100%" stop-color="#020208"/>
+    </radialGradient>
+    <linearGradient id="indigo-g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4338CA"/>
+      <stop offset="50%" stop-color="#312E81"/>
+      <stop offset="100%" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <!-- Blueprint grid -->
+    <pattern id="blueprint" patternUnits="userSpaceOnUse" width="40" height="40">
+      <rect width="40" height="40" fill="none" stroke="#312E81" stroke-width="0.3" opacity="0.08"/>
+    </pattern>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="50%" stop-color="transparent"/><stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <!-- Blueprint grid -->
+  <rect width="1920" height="1080" fill="url(#blueprint)"/>
+  <!-- Measurement lines (technical drawing feel) -->
+  <g opacity="0.06" stroke="#4338CA" stroke-width="0.5">
+    <line x1="480" y1="430" x2="480" y2="550" stroke-dasharray="4 4"/>
+    <line x1="1440" y1="430" x2="1440" y2="550" stroke-dasharray="4 4"/>
+    <line x1="480" y1="430" x2="1440" y2="430"/>
+    <line x1="480" y1="550" x2="1440" y2="550"/>
+    <!-- Dimension arrows -->
+    <line x1="490" y1="430" x2="480" y2="435"/>
+    <line x1="490" y1="430" x2="480" y2="425"/>
+  </g>
+  <!-- Exploded view dots -->
+  <g opacity="0.05" fill="#4338CA">
+    <circle cx="620" cy="460" r="2"/><line x1="622" y1="460" x2="580" y2="440" stroke="#4338CA" stroke-width="0.3"/>
+    <circle cx="1300" cy="480" r="2"/><line x1="1302" y1="480" x2="1360" y2="460" stroke="#4338CA" stroke-width="0.3"/>
+  </g>
+  <!-- Glow -->
+  <text x="960" y="500" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-indigo)" opacity="0.4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#312E81">haul</tspan>
+  </text>
+  <!-- Over -->
+  <text x="960" y="500" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#1a1a2a">Over</tspan><tspan font-weight="700" fill="transparent">haul</tspan>
+  </text>
+  <!-- haul -->
+  <text x="960" y="500" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#indigo-g)">haul</tspan>
+  </text>
+  <text x="960" y="570" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#35306a" letter-spacing="5">ACCOUNTING &middot; TAX &middot; LAW &middot; FINANCE</text>
+  <text x="960" y="600" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#1e1b40" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.06"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.5"/>
+</svg>

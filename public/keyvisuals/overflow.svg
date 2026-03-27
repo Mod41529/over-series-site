@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-teal" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="55" result="b3"/>
+      <feMerge><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Ripple/wave distortion -->
+    <filter id="ripple" x="-10%" y="-10%" width="120%" height="150%">
+      <feTurbulence type="turbulence" baseFrequency="0.02 0.06" numOctaves="2" seed="5" result="turb"/>
+      <feDisplacementMap in="SourceGraphic" in2="turb" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <radialGradient id="bg" cx="50%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#081a18"/>
+      <stop offset="50%" stop-color="#040d0c"/>
+      <stop offset="100%" stop-color="#020404"/>
+    </radialGradient>
+    <radialGradient id="pool" cx="50%" cy="60%" r="30%">
+      <stop offset="0%" stop-color="#0D9488" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <linearGradient id="teal-g" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="50%" stop-color="#0D9488"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="50%" stop-color="transparent"/><stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#pool)"/>
+  <!-- Water ripple rings -->
+  <g opacity="0.04" stroke="#0D9488" fill="none">
+    <ellipse cx="960" cy="620" rx="200" ry="30" stroke-width="0.5"/>
+    <ellipse cx="960" cy="620" rx="350" ry="50" stroke-width="0.4"/>
+    <ellipse cx="960" cy="620" rx="500" ry="70" stroke-width="0.3"/>
+    <ellipse cx="960" cy="620" rx="650" ry="90" stroke-width="0.2"/>
+  </g>
+  <!-- Rippled reflection -->
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#ripple)" opacity="0.12" transform="scale(1,-0.3) translate(0,-2800)">
+    <tspan font-weight="300" fill="#0D9488">Over</tspan><tspan font-weight="700" fill="#0D9488">flow</tspan>
+  </text>
+  <!-- Glow -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-teal)" opacity="0.45">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#0D9488">flow</tspan>
+  </text>
+  <!-- Over -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#1a2a28">Over</tspan><tspan font-weight="700" fill="transparent">flow</tspan>
+  </text>
+  <!-- flow -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#teal-g)">flow</tspan>
+  </text>
+  <text x="960" y="560" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#2a4a48" letter-spacing="5">INVESTMENT</text>
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#1a3330" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.05"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.5"/>
+</svg>

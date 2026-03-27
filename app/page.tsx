@@ -1,65 +1,63 @@
-import Image from "next/image";
+import Link from "next/link";
+import { brands, philosophy, tagline } from "@/app/lib/brands";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main>
+      <section className="hero-editorial">
+        <p className="hero-subline" data-reveal>
+          Over Series
+        </p>
+        <h1 className="hero-title" data-reveal>
+          OVER SERIES
+        </h1>
+        <p className="hero-tagline" data-fade>
+          {tagline}
+        </p>
+        <a className="hero-scroll" href="#brands" aria-label="Scroll to brands">
+          Scroll
+        </a>
+      </section>
+
+      <section className="brand-bento" id="brands">
+        {brands.map((brand) => {
+          const isOverture = brand.slug === "overture";
+          const overPart = isOverture ? "" : "Over";
+          const domainPart = isOverture ? brand.name : brand.name.replace("Over", "");
+          return (
+            <Link
+              key={brand.slug}
+              href={`/${brand.slug}`}
+              className={`bento-card${brand.featured ? " featured" : ""}`}
+              style={{ ["--brand-color" as string]: brand.color }}
+              data-reveal
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+              <div className="bento-kicker">
+                <span>{brand.domainKo}</span>
+                <span>{brand.domain}</span>
+              </div>
+              <h2>
+                {overPart && <span className="card-over">{overPart}</span>}
+                <span className="card-domain" style={{ color: brand.color }}>{domainPart}</span>
+              </h2>
+              <p className="card-sentence">{brand.sentence}</p>
+            </Link>
+          );
+        })}
+      </section>
+
+      <section className="philosophy-editorial" data-parallax>
+        <p className="eyebrow" data-fade>
+          Philosophy
+        </p>
+        <ul>
+          {philosophy.map((line) => (
+            <li key={line} data-fade>
+              {line}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </main>
   );
 }

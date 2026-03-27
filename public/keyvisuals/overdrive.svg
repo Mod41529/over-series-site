@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <filter id="glow-orange" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b1"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="20" result="b2"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="55" result="b3"/>
+      <feMerge><feMergeNode in="b3"/><feMergeNode in="b2"/><feMergeNode in="b1"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-dim" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <!-- Motion blur (horizontal) -->
+    <filter id="motion" x="-30%" y="-10%" width="160%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="25 0"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0.4 0.3 0 0 0  0 0 0.2 0 0  0 0 0 0.3 0"/>
+    </filter>
+    <!-- Speed trail left -->
+    <filter id="speed-l" x="-50%" y="-10%" width="170%" height="120%">
+      <feOffset in="SourceGraphic" dx="-40" dy="0"/>
+      <feGaussianBlur stdDeviation="20 0"/>
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0.5 0.3 0 0 0  0 0 0 0 0  0 0 0 0.15 0"/>
+    </filter>
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" stitchTiles="stitch" result="n"/><feColorMatrix type="saturate" values="0" in="n" result="m"/><feBlend in="SourceGraphic" in2="m" mode="overlay"/></filter>
+    <radialGradient id="bg" cx="55%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#1a1008"/>
+      <stop offset="50%" stop-color="#0d0804"/>
+      <stop offset="100%" stop-color="#040302"/>
+    </radialGradient>
+    <radialGradient id="heat" cx="60%" cy="48%" r="25%">
+      <stop offset="0%" stop-color="#F97316" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <linearGradient id="orange-g" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FB923C"/>
+      <stop offset="50%" stop-color="#F97316"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+      <stop offset="50%" stop-color="transparent"/><stop offset="100%" stop-color="#000"/>
+    </radialGradient>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#heat)"/>
+  <!-- Speed lines -->
+  <g opacity="0.05" stroke="#F97316" stroke-width="0.5">
+    <line x1="200" y1="470" x2="650" y2="470"/>
+    <line x1="150" y1="490" x2="600" y2="490"/>
+    <line x1="250" y1="510" x2="620" y2="510"/>
+    <line x1="1300" y1="465" x2="1750" y2="465"/>
+    <line x1="1350" y1="495" x2="1780" y2="495"/>
+    <line x1="1280" y1="515" x2="1700" y2="515"/>
+  </g>
+  <!-- Motion blur trail -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#speed-l)">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#F97316">drive</tspan>
+  </text>
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#motion)" opacity="0.4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#F97316">drive</tspan>
+  </text>
+  <!-- Glow -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-orange)" opacity="0.45">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="#F97316">drive</tspan>
+  </text>
+  <!-- Over -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4" filter="url(#glow-dim)">
+    <tspan font-weight="300" fill="#2a1e10">Over</tspan><tspan font-weight="700" fill="transparent">drive</tspan>
+  </text>
+  <!-- drive -->
+  <text x="960" y="490" text-anchor="middle" font-family="Geist, sans-serif" font-size="180" letter-spacing="-4">
+    <tspan font-weight="300" fill="transparent">Over</tspan><tspan font-weight="700" fill="url(#orange-g)">drive</tspan>
+  </text>
+  <text x="960" y="560" text-anchor="middle" font-family="Geist, sans-serif" font-size="16" font-weight="300" fill="#5a4030" letter-spacing="5">SPORTS</text>
+  <text x="960" y="590" text-anchor="middle" font-family="Geist, sans-serif" font-size="13" font-weight="300" fill="#352818" letter-spacing="2" font-style="italic">Beyond default, in every direction.</text>
+  <rect width="1920" height="1080" filter="url(#grain)" opacity="0.07"/>
+  <rect width="1920" height="1080" fill="url(#vig)" opacity="0.5"/>
+</svg>
