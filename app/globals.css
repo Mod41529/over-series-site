@@ -142,18 +142,26 @@ main {
 }
 
 .bento-card {
+  --card-pad: clamp(20px, 2.6vw, 32px);
   grid-column: span 4;
   border: 1px solid color-mix(in srgb, var(--brand-color) 18%, var(--line));
   border-radius: 20px;
   min-height: 240px;
-  padding: clamp(20px, 2.6vw, 32px);
+  padding: var(--card-pad);
   display: grid;
-  align-content: space-between;
-  gap: 1.5rem;
+  grid-template-rows: 1fr auto;
+  gap: 0;
   background: color-mix(in srgb, var(--brand-color) 3%, #ffffff);
   position: relative;
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+
+.bento-content {
+  display: grid;
+  align-content: space-between;
+  gap: 1.5rem;
+  padding-bottom: 1.25rem;
 }
 
 .bento-card::before {
@@ -187,10 +195,56 @@ main {
   height: 60%;
 }
 
+.bento-visual {
+  height: clamp(90px, 22vw, 140px);
+  margin: 0 calc(-1 * var(--card-pad)) calc(-1 * var(--card-pad));
+  overflow: hidden;
+  border-radius: 0 0 19px 19px;
+  position: relative;
+}
+
+.bento-visual::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 55%;
+  background: linear-gradient(to bottom,
+    color-mix(in srgb, var(--brand-color) 3%, #ffffff) 0%,
+    transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+.bento-card:hover .bento-visual::before {
+  background: linear-gradient(to bottom,
+    color-mix(in srgb, var(--brand-color) 5%, #ffffff) 0%,
+    transparent 100%);
+}
+
+.bento-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  display: block;
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  opacity: 0.88;
+}
+
+.bento-card:hover .bento-visual img {
+  transform: scale(1.06);
+  opacity: 1;
+}
+
 /* Row 1: featured 6 + featured 6 */
 .bento-card.featured {
   grid-column: span 6;
   min-height: 340px;
+}
+
+.bento-card.featured .bento-visual {
+  height: clamp(120px, 28vw, 200px);
 }
 
 /* Row 2-3: varying sizes */

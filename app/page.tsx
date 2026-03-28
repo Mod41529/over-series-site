@@ -32,15 +32,21 @@ export default function Home() {
               style={{ ["--brand-color" as string]: brand.color }}
               data-reveal
             >
-              <div className="bento-kicker">
-                <span>{brand.domainKo}</span>
-                <span>{brand.domain}</span>
+              <div className="bento-content">
+                <div className="bento-kicker">
+                  <span>{brand.domainKo}</span>
+                  <span>{brand.domain}</span>
+                </div>
+                <h2>
+                  {overPart && <span className="card-over">{overPart}</span>}
+                  <span className="card-domain" style={{ color: brand.color }}>{domainPart}</span>
+                </h2>
+                <p className="card-sentence">{brand.sentence}</p>
               </div>
-              <h2>
-                {overPart && <span className="card-over">{overPart}</span>}
-                <span className="card-domain" style={{ color: brand.color }}>{domainPart}</span>
-              </h2>
-              <p className="card-sentence">{brand.sentence}</p>
+              <div className="bento-visual">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`/keyvisuals/${brand.slug}.svg`} alt="" aria-hidden="true" />
+              </div>
             </Link>
           );
         })}
